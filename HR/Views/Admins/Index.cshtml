@@ -1,0 +1,27 @@
+﻿
+
+@{
+    ViewBag.Title = "Login";
+    //Layout = "~/Views/_ViewStart.cshtml";
+}
+
+<h2>Admin Login</h2>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+<form method="post">
+    <label>Username</label>
+    <input type="text" name="username" class="form-control" required />
+
+    <br />
+
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" required />
+
+    <br />
+
+    <button class="btn btn-primary">Login</button>
+</form>

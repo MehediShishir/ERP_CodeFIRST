@@ -3,32 +3,60 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - ERP SYS</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+
+            @Html.ActionLink("ERP SYSTEM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <ul class="navbar-nav me-auto">
+                    @if (Session["AdminUser"] != null)
+                    {
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Employee", "Index", "Employees", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Attendance", "Index", "Attendances", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Department", "Index", "Departments", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Designation", "Index", "Designations", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item">@Html.ActionLink("Leave Application", "Index", "LeaveApplications", null, new { @class = "nav-link" })</li>
+                    }
                 </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    @if (Session["AdminUser"] == null)
+                    {
+                        <li class="nav-item">@Html.ActionLink("Login", "Index", "Admins", null, new { @class = "nav-link" })</li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Welcome, @Session["AdminUser"]</a>
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Logout", "Logout", "Admins", null, new { @class = "nav-link text-danger" })
+                        </li>
+                    }
+                </ul>
+
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+
+    <div class="container body-content mt-4">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - ERP Application</p>
         </footer>
     </div>
 

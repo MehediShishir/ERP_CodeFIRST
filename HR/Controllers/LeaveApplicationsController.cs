@@ -12,107 +12,107 @@ using HR.Filters;
 namespace HR.Controllers
 {
     [AuthFilter]
-    public class EmployeesController : Controller
+    public class LeaveApplicationsController : Controller
     {
         private HRContext db = new HRContext();
 
-        // GET: Employees
+        // GET: LeaveApplications
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            return View(db.LeaveApplications.ToList());
         }
 
-        // GET: Employees/Details/5
+        // GET: LeaveApplications/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
+            if (leaveApplication == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(leaveApplication);
         }
 
-        // GET: Employees/Create
+        // GET: LeaveApplications/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: LeaveApplications/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,EmployeeName,EmployeeEmail,EmployeeMobileNo,EmployeeAddress")] Employee employee)
+        public ActionResult Create([Bind(Include = "LeaveApplicationID,EmployeeID,LeaveType,StartDate,EndDate")] LeaveApplication leaveApplication)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
+                db.LeaveApplications.Add(leaveApplication);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(employee);
+            return View(leaveApplication);
         }
 
-        // GET: Employees/Edit/5
+        // GET: LeaveApplications/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
+            if (leaveApplication == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(leaveApplication);
         }
 
-        // POST: Employees/Edit/5
+        // POST: LeaveApplications/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeID,EmployeeName,EmployeeEmail,EmployeeMobileNo,EmployeeAddress")] Employee employee)
+        public ActionResult Edit([Bind(Include = "LeaveApplicationID,EmployeeID,LeaveType,StartDate,EndDate")] LeaveApplication leaveApplication)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
+                db.Entry(leaveApplication).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(employee);
+            return View(leaveApplication);
         }
 
-        // GET: Employees/Delete/5
+        // GET: LeaveApplications/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
+            LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
+            if (leaveApplication == null)
             {
                 return HttpNotFound();
             }
-            return View(employee);
+            return View(leaveApplication);
         }
 
-        // POST: Employees/Delete/5
+        // POST: LeaveApplications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
+            LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
+            db.LeaveApplications.Remove(leaveApplication);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

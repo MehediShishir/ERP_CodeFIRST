@@ -7,9 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HR.Models;
-
+using HR.Filters;
 namespace HR.Controllers
 {
+    [AuthFilter]
     public class DepartmentsController : Controller
     {
         private HRContext db = new HRContext();

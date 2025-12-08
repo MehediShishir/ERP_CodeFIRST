@@ -127,11 +127,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DesignationsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveApplicationsController.cs" />
+    <Compile Include="Filters\AuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -151,12 +154,22 @@
     <Compile Include="Migrations\202512041419519_Attendance table added.Designer.cs">
       <DependentUpon>202512041419519_Attendance table added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202512041437378_Leave_Application was Added.cs" />
+    <Compile Include="Migrations\202512041437378_Leave_Application was Added.Designer.cs">
+      <DependentUpon>202512041437378_Leave_Application was Added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202512041734591_AddAdminTable.cs" />
+    <Compile Include="Migrations\202512041734591_AddAdminTable.Designer.cs">
+      <DependentUpon>202512041734591_AddAdminTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HRContext.cs" />
+    <Compile Include="Models\LeaveApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +243,12 @@
     <Content Include="Views\Attendances\Details.cshtml" />
     <Content Include="Views\Attendances\Edit.cshtml" />
     <Content Include="Views\Attendances\Index.cshtml" />
+    <Content Include="Views\LeaveApplications\Create.cshtml" />
+    <Content Include="Views\LeaveApplications\Delete.cshtml" />
+    <Content Include="Views\LeaveApplications\Details.cshtml" />
+    <Content Include="Views\LeaveApplications\Edit.cshtml" />
+    <Content Include="Views\LeaveApplications\Index.cshtml" />
+    <Content Include="Views\Admins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -273,6 +292,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202512041419519_Attendance table added.resx">
       <DependentUpon>202512041419519_Attendance table added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202512041437378_Leave_Application was Added.resx">
+      <DependentUpon>202512041437378_Leave_Application was Added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202512041734591_AddAdminTable.resx">
+      <DependentUpon>202512041734591_AddAdminTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

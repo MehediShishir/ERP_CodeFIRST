@@ -8,15 +8,18 @@ using System.Web;
 
 namespace HR.Models
 {
-    public class Attendance
+    public class LeaveApplication
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AttendanceID { get; set; }
+        public int LeaveApplicationID { get; set; }
         [DisplayName("Employee ID")]
         public int EmployeeID { get; set; }
-        [DisplayName("Date & Time")]
-        public DateTime Date { get; set; }
-
+        [DisplayName("Leave Type")]
+        public string LeaveType { get; set; }
+        [DisplayName("Leave Start Date")]
+        public DateTime StartDate { get; set; }
+        [DisplayName("End Date")]
+        public DateTime EndDate { get; set; }
     }
 }

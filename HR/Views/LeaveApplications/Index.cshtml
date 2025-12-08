@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HR.Models.LeaveApplication>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Leave Application</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeaveType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LeaveApplicationID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LeaveApplicationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LeaveApplicationID })
+        </td>
+    </tr>
+}
+
+</table>

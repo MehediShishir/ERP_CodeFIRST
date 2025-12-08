@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,15 +7,15 @@ using System.Web;
 
 namespace HR.Models
 {
-    public class Designation
+    public class Admin
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int DesignationID { get; set; }
-        [DisplayName("Title")]
-        public string Title { get; set; }
-        [DisplayName("Short Code")]
-        public string ShortCode { get; set; }
+        public int AdminID { get; set; }
+        [Required]
+        public string UserName { get; set; }
+        [Required]
+        public string Password { get; set; }
 
     }
 }
