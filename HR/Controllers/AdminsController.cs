@@ -21,9 +21,7 @@ namespace HR.Controllers
         [HttpPost]
         public ActionResult Index(string username, string password)
         {
-            var admin = db.Admins
-                          .FirstOrDefault(a => a.UserName == username
-                                            && a.Password == password);
+            var admin = db.Admins.FirstOrDefault(a => a.UserName == username && a.Password == password);
 
             if (admin != null)
             {

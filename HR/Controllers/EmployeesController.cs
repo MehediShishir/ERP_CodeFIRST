@@ -19,6 +19,7 @@ namespace HR.Controllers
         // GET: Employees
         public ActionResult Index()
         {
+            var employees = db.Employees.Include(e => e.Department).Include(e => e.Designation);
             return View(db.Employees.ToList());
         }
 
@@ -40,6 +41,8 @@ namespace HR.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
+            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "DepartmentName");
+            ViewBag.DesignationID = new SelectList(db.Designations, "DesignationID", "Title");
             return View();
         }
 
@@ -48,7 +51,7 @@ namespace HR.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,EmployeeName,EmployeeEmail,EmployeeMobileNo,EmployeeAddress")] Employee employee)
+        public ActionResult Create(Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +59,8 @@ namespace HR.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "DepartmentName", employee.DepartmentID);
+            ViewBag.DesignationID = new SelectList(db.Designations, "DesignationID", "Title", employee.DesignationID);
 
             return View(employee);
         }

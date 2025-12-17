@@ -50,6 +50,11 @@ namespace HR.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "LeaveApplicationID,EmployeeID,LeaveType,StartDate,EndDate")] LeaveApplication leaveApplication)
         {
+            bool employeeExists = db.Employees.Any(e => e.EmployeeID == leaveApplication.EmployeeID);
+            if (!employeeExists)
+            {
+                ModelState.AddModelError("EmployeeID", "Employee ID does not exist.");
+            }
             if (ModelState.IsValid)
             {
                 db.LeaveApplications.Add(leaveApplication);

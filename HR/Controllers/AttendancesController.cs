@@ -50,6 +50,14 @@ namespace HR.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AttendanceID,EmployeeID,Date")] Attendance attendance)
         {
+            // Check if the EmployeeID exists in the Employees table
+            bool employeeExists = db.Employees.Any(e => e.EmployeeID == attendance.EmployeeID);
+
+            if (!employeeExists)
+            {
+                ModelState.AddModelError("EmployeeID", "Employee ID does not exist.");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Attendances.Add(attendance);
@@ -59,6 +67,7 @@ namespace HR.Controllers
 
             return View(attendance);
         }
+
 
         // GET: Attendances/Edit/5
         public ActionResult Edit(int? id)
