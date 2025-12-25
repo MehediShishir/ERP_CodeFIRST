@@ -134,6 +134,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveApplicationsController.cs" />
+    <Compile Include="Controllers\LeaveTypesController.cs" />
     <Compile Include="Filters\AuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -166,6 +167,14 @@
     <Compile Include="Migrations\202512151428510_AddDepartmentAndDesignationToEmployee.Designer.cs">
       <DependentUpon>202512151428510_AddDepartmentAndDesignationToEmployee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202512240519598_Leave type table added.cs" />
+    <Compile Include="Migrations\202512240519598_Leave type table added.Designer.cs">
+      <DependentUpon>202512240519598_Leave type table added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202512240935222_Change in leaveApplication.cs" />
+    <Compile Include="Migrations\202512240935222_Change in leaveApplication.Designer.cs">
+      <DependentUpon>202512240935222_Change in leaveApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -174,6 +183,7 @@
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\HRContext.cs" />
     <Compile Include="Models\LeaveApplication.cs" />
+    <Compile Include="Models\LeaveType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +263,11 @@
     <Content Include="Views\LeaveApplications\Edit.cshtml" />
     <Content Include="Views\LeaveApplications\Index.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\LeaveTypes\Create.cshtml" />
+    <Content Include="Views\LeaveTypes\Delete.cshtml" />
+    <Content Include="Views\LeaveTypes\Details.cshtml" />
+    <Content Include="Views\LeaveTypes\Edit.cshtml" />
+    <Content Include="Views\LeaveTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -305,6 +320,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202512151428510_AddDepartmentAndDesignationToEmployee.resx">
       <DependentUpon>202512151428510_AddDepartmentAndDesignationToEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202512240519598_Leave type table added.resx">
+      <DependentUpon>202512240519598_Leave type table added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202512240935222_Change in leaveApplication.resx">
+      <DependentUpon>202512240935222_Change in leaveApplication.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

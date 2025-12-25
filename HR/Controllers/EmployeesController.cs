@@ -68,24 +68,35 @@ namespace HR.Controllers
         // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
+            if (employee == null) return HttpNotFound();
+
+            ViewBag.DepartmentID = new SelectList(
+                db.Departments,
+                "DepartmentID",
+                "DepartmentName",
+                employee.DepartmentID
+            );
+
+            ViewBag.DesignationID = new SelectList(
+                db.Designations,
+                "DesignationID",
+                "Title",
+                employee.DesignationID
+            );
+
             return View(employee);
         }
+
 
         // POST: Employees/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeID,EmployeeName,EmployeeEmail,EmployeeMobileNo,EmployeeAddress")] Employee employee)
+        public ActionResult Edit(Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +104,13 @@ namespace HR.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.DepartmentID = new SelectList(db.Departments, "DepartmentID", "DepartmentName", employee.DepartmentID);
+            ViewBag.DesignationID = new SelectList(db.Designations, "DesignationID", "Title", employee.DesignationID);
+
             return View(employee);
         }
+
 
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)

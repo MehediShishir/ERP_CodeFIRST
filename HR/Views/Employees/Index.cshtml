@@ -8,7 +8,7 @@
 <h2>Employee</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -49,9 +49,16 @@
             @Html.DisplayFor(modelItem => item.EmployeeAddress)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeID })
+            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation.Title)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
         </td>
     </tr>
 }

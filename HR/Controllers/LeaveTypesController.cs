@@ -7,142 +7,110 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HR.Models;
-using HR.Filters;
 
 namespace HR.Controllers
 {
-    [AuthFilter]
-    public class LeaveApplicationsController : Controller
+    public class LeaveTypesController : Controller
     {
         private HRContext db = new HRContext();
 
-        // GET: LeaveApplications
+        // GET: LeaveTypes
         public ActionResult Index()
         {
-            return View(db.LeaveApplications.ToList());
+            return View(db.LeaveTypes.ToList());
         }
 
-        // GET: LeaveApplications/Details/5
+        // GET: LeaveTypes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
-            if (leaveApplication == null)
+            LeaveType leaveType = db.LeaveTypes.Find(id);
+            if (leaveType == null)
             {
                 return HttpNotFound();
             }
-            return View(leaveApplication);
+            return View(leaveType);
         }
 
-        // GET: LeaveApplications/Create
+        // GET: LeaveTypes/Create
         public ActionResult Create()
         {
-            ViewBag.LeaveTypeID = new SelectList(
-                db.LeaveTypes,
-                "LeaveTypeID",
-                "LeaveTypeName"
-            );
-
             return View();
         }
 
-
-        // POST: LeaveApplications/Create
+        // POST: LeaveTypes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LeaveApplication leaveApplication)
+        public ActionResult Create([Bind(Include = "LeaveTypeID,LeaveTypeName")] LeaveType leaveType)
         {
             if (ModelState.IsValid)
             {
-                db.LeaveApplications.Add(leaveApplication);
+                db.LeaveTypes.Add(leaveType);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LeaveTypeID = new SelectList(
-                db.LeaveTypes,
-                "LeaveTypeID",
-                "LeaveTypeName",
-                leaveApplication.LeaveTypeID
-            );
-
-            return View(leaveApplication);
+            return View(leaveType);
         }
 
-
-        // GET: LeaveApplications/Edit/5
+        // GET: LeaveTypes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LeaveType leaveType = db.LeaveTypes.Find(id);
+            if (leaveType == null)
+            {
                 return HttpNotFound();
-
-            var leaveApplication = db.LeaveApplications.Find(id);
-            if (leaveApplication == null)
-                return HttpNotFound();
-
-            ViewBag.LeaveTypeID = new SelectList(
-                db.LeaveTypes,
-                "LeaveTypeID",
-                "LeaveTypeName",
-                leaveApplication.LeaveTypeID   // preselect
-            );
-
-            return View(leaveApplication);
+            }
+            return View(leaveType);
         }
 
-
-        // POST: LeaveApplications/Edit/5
+        // POST: LeaveTypes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(LeaveApplication leaveApplication)
+        public ActionResult Edit([Bind(Include = "LeaveTypeID,LeaveTypeName")] LeaveType leaveType)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(leaveApplication).State = EntityState.Modified;
+                db.Entry(leaveType).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.LeaveTypeID = new SelectList(
-                db.LeaveTypes,
-                "LeaveTypeID",
-                "LeaveTypeName",
-                leaveApplication.LeaveTypeID
-            );
-
-            return View(leaveApplication);
+            return View(leaveType);
         }
 
-
-        // GET: LeaveApplications/Delete/5
+        // GET: LeaveTypes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
-            if (leaveApplication == null)
+            LeaveType leaveType = db.LeaveTypes.Find(id);
+            if (leaveType == null)
             {
                 return HttpNotFound();
             }
-            return View(leaveApplication);
+            return View(leaveType);
         }
 
-        // POST: LeaveApplications/Delete/5
+        // POST: LeaveTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LeaveApplication leaveApplication = db.LeaveApplications.Find(id);
-            db.LeaveApplications.Remove(leaveApplication);
+            LeaveType leaveType = db.LeaveTypes.Find(id);
+            db.LeaveTypes.Remove(leaveType);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

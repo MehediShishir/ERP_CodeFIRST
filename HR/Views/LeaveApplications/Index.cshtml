@@ -8,7 +8,7 @@
 <h2>Leave Application</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.EmployeeID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LeaveType)
+            @Html.DisplayNameFor(model => model.LeaveType.LeaveTypeName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartDate)
@@ -33,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.EmployeeID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LeaveType)
+            @Html.DisplayFor(modelItem => item.LeaveType.LeaveTypeName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartDate)

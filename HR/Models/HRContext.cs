@@ -23,5 +23,7 @@ namespace HR.Models
         public DbSet<LeaveApplication> LeaveApplications { get; set; }
 
         public DbSet<Admin> Admins { get; set; }
+
+        public System.Data.Entity.DbSet<HR.Models.LeaveType> LeaveTypes { get; set; }
     }
 }

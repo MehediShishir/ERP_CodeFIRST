@@ -21,11 +21,12 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LeaveType)
+            @Html.DisplayNameFor(model => @Model.LeaveType.LeaveTypeName)
+
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LeaveType)
+            @Html.DisplayFor(model => @Model.LeaveType.LeaveTypeName)
         </dd>
 
         <dt>
